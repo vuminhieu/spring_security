@@ -1,19 +1,87 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Welcome to CodeJava Home</title>
-	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="ISO-8859-1">
+    <title>Welcome to CodeJava Home</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
-	<div class="container text-center">
-		<h1>Welcome to CodeJava.net</h1>
-		<h3><a th:href="@{/users}">List of Users</a></h3>
-		<h3><a th:href="@{/register}">Register</a></h3>
-		<h3><a th:href="@{/login}">Login</a></h3>
-	</div>
-	
-</body>
-</html>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="#">
+            <img
+                    src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                    height="16"
+                    alt="MDB Logo"
+                    loading="lazy"
+                    style="margin-top: -1px;"
+            />
+        </a>
+
+        <!-- Toggle button -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarButtonsExample"
+                aria-controls="navbarButtonsExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dashboard</a>
+                </li>
+            </ul>
+            <!-- Left links -->
+
+            <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-primary me-3 m-2">
+                    <a th:href="@{/login}" class="text-white">Login</a>
+                </button>
+                <button type="button" class="btn btn-primary me-3">
+                    <a th:href="@{/register}" class="text-white"> Register</a>
+                </button>
+                <button type="button" class="btn btn-primary me-3" sec:authorize="isAuthenticated()">
+                    <a th:href="@{/users}" class="text-white"> List User</a>
+                </button>
+            </div>
+
+        </div>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--	<meta charset="ISO-8859-1">-->
+<!--	<title>Welcome to CodeJava Home</title>-->
+<!--	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />-->
+<!--	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>-->
+<!--	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--	<div class="container text-center">-->
+<!--		<h1>Welcome to CodeJava.net</h1>-->
+<!--		<h3><a th:href="@{/users}">List of Users</a></h3>-->
+<!--		<h3><a th:href="@{/register}">Register</a></h3>-->
+<!--		<h3><a th:href="@{/login}">Login</a></h3>-->
+<!--	</div>-->
+<!--	-->
+<!--</body>-->
+<!--</html>-->
