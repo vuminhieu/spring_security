@@ -1,7 +1,10 @@
-package net.codejava;
+package net.codejava.controllers;
 
 import java.util.List;
 
+import net.codejava.entity.User;
+import net.codejava.reposotory.UserRepository;
+import net.codejava.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AppController {
+
+	@Autowired
+	private UserService service;
 
 	@Autowired
 	private UserRepository userRepo;
@@ -29,18 +35,15 @@ public class AppController {
 	
 	@PostMapping("/process_register")
 	public String processRegister(User user) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(encodedPassword);
-		
-		userRepo.save(user);
+
+		service.registerDefaultUser(user);
 		
 		return "register_success";
 	}
 	
 	@GetMapping("/users")
 	public String listUsers(Model model) {
-		List<User> listUsers = userRepo.findAll();
+		List<User> listUsers = service.listAll();
 		model.addAttribute("listUsers", listUsers);
 		
 		return "users";
