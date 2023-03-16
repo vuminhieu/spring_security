@@ -30,6 +30,7 @@ public class ProductController {
     public String showNewForm(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("pageTitle", "Add New Product");
+
         return "admin/products/form";
     }
 
@@ -37,6 +38,7 @@ public class ProductController {
     public String saveUser(Product product, RedirectAttributes ra) {
         service.save(product);
         ra.addFlashAttribute("message", "The product has been saved successfully.");
+
         return "redirect:/admin/products";
     }
 

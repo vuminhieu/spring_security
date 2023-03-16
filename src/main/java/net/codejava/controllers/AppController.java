@@ -35,7 +35,6 @@ public class AppController {
 	
 	@PostMapping("/process_register")
 	public String processRegister(User user) {
-
 		service.registerDefaultUser(user);
 		
 		return "register_success";

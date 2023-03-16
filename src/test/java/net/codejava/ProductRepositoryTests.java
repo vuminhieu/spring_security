@@ -25,12 +25,11 @@ public class ProductRepositoryTests {
     @Test
     public void testAddNew() {
         Product product = new Product();
-        product.setName("May Tinh abc");
+        product.setName("May Tinh De Ban");
         product.setDescription("Khong co mo ta");
         product.setImage("hieu.img");
-        product.setPrice(2022.3333);
+        product.setPrice(2022.99);
         product.setQuantity(3);
-
         Product saveProduct = repo.save(product);
 
         assertThat(saveProduct).isNotNull();

@@ -35,11 +35,8 @@ public class RoleRepositoryTests {
         Role user = new Role("User");
         Role admin = new Role("Admin");
         Role customer = new Role("Customer");
-
         roleRepo.saveAll(List.of(user, admin, customer));
-
         List<Role> listRoles = roleRepo.findAll();
-
         assertThat(listRoles.size()).isEqualTo(3);
     }
 
@@ -48,12 +45,11 @@ public class RoleRepositoryTests {
         Role roleAdmin = roleRepo.findByName("Admin");
 
         User user = new User();
-        user.setEmail("mikes.gates@gmail.com");
-        user.setPassword("mike2020");
-        user.setFirstName("Mike");
-        user.setLastName("Gates");
+        user.setEmail("hieu.vuminh@gmail.com");
+        user.setPassword("123456");
+        user.setFirstName("Vu");
+        user.setLastName("Hieu");
         user.addRole(roleAdmin);
-
         User savedUser = userRepo.save(user);
 
         assertThat(savedUser.getRoles().size()).isEqualTo(1);
@@ -64,10 +60,8 @@ public class RoleRepositoryTests {
         User user = userRepo.findById(1L).get();
         Role roleUser = roleRepo.findByName("User");
         Role roleCustomer = new Role(3);
-
         user.addRole(roleUser);
         user.addRole(roleCustomer);
-
         User savedUser = userRepo.save(user);
 
         assertThat(savedUser.getRoles().size()).isEqualTo(2);
