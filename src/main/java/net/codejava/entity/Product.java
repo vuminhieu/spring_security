@@ -1,6 +1,9 @@
 package net.codejava.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -24,6 +27,14 @@ public class Product {
 
     @Column
     private Integer quantity;
+
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<OrderProduct> orderProducts;
+
+    public Product() {
+    }
 
     public Double getPrice() {
         return price;
