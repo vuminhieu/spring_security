@@ -27,6 +27,10 @@ public class OrderProduct {
         this.quantity = quantity;
     }
 
+    public OrderProduct() {
+
+    }
+
     public Long getId() {
         return id;
     }
