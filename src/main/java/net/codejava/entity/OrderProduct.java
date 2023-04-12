@@ -13,16 +13,22 @@ public class OrderProduct {
     private Long id;
 
     @Column(unique = true, length = 45)
-    private Double quantity;
+    private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "product_id")
+    @JoinColumn(name = "product_id")
     @JsonManagedReference
     private Product product;
 
+    public Product getProduct() {
+        return product;
+    }
 
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
-    public OrderProduct(Long id, Double quantity) {
+    public OrderProduct(Long id, Integer quantity) {
         this.id = id;
         this.quantity = quantity;
     }
@@ -39,11 +45,11 @@ public class OrderProduct {
         this.id = id;
     }
 
-    public Double getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Double quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 }

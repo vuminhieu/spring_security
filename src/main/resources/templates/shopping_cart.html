@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <title>Shopping Cart</title>
+</head>
+<body>
+<div class="row">
+    <div class="col">
+        <th:block th:each="item, status : ${orderProduct}">
+            <div class="row border rounded" th:with="product = ${item.product}">
+                <div class="col">
+                    <div>[[${status.count}]]</div>
+                    <div>Remove icon</div>
+                </div>
+                <div cla$s="col">
+                    <!--                    <img th:src="" />-->
+                    Image
+                </div>
+                <div class="col">
+                    <div>
+                        <a>
+                            <b>[[${product.name}]]</b>
+                        </a>
+                    </div>
+                    <div><input type="number" th:value="${item.quantity}" class="form-control"/></div>
+                    <div>
+                        <span>Price:   </span>
+                        <span> [[${product.price}]] </span>
+                    </div>
+                    <div>
+                        <span>=</span><Span class="h4"> [Subtotal ]</span>
+                    </div>
+                </div>
+
+            </div>
+        </th:block>
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+
+</body>
+</html>

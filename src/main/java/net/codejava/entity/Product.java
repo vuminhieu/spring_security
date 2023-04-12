@@ -33,6 +33,14 @@ public class Product {
     @JsonManagedReference
     private Set<OrderProduct> orderProducts;
 
+    public Set<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(Set<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
     public Product() {
     }
 
