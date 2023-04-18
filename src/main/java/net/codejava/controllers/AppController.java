@@ -2,8 +2,10 @@ package net.codejava.controllers;
 
 import java.util.List;
 
+import net.codejava.entity.Product;
 import net.codejava.entity.User;
 import net.codejava.reposotory.UserRepository;
+import net.codejava.service.ProductService;
 import net.codejava.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,10 +21,16 @@ public class AppController {
 	private UserService service;
 
 	@Autowired
+	private ProductService serviceProduct;
+
+	@Autowired
 	private UserRepository userRepo;
 	
 	@GetMapping("")
-	public String viewHomePage() {
+	public String viewHomePage(Model model) {
+		List<Product> listProducts = serviceProduct.listAll();
+		model.addAttribute("listProducts", listProducts);
+
 		return "index";
 	}
 	

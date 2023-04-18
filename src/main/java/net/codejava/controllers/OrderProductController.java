@@ -26,6 +26,7 @@ public class OrderProductController {
         List<OrderProduct> orderProduct = cartServices.listCartItems();
         model.addAttribute("orderProduct", orderProduct);
         return "shopping_cart";
-
     }
+
+
 }
