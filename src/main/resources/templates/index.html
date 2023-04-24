@@ -7,7 +7,11 @@
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <script th:src= "@{/js/quantity_control.js}"></script>
+    <script type="application/json" src="./js/quantity_control.js"></script>
+    <script type="application/json" src="js/add_to_cart.js"></script>
+
+<!--    <script th:src= "@{/js/quantity_control.js}"></script>-->
+<!--    <script th:src= "@{/js/add_to_cart.js}"></script>-->
 </head>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -99,6 +103,7 @@
     </tr>
     </thead>
     <tbody>
+
     <th:block th:each="product : ${listProducts}">
         <tr>
             <td>[[${product.id}]]</td>
@@ -107,12 +112,21 @@
             <td>[[${product.price}]]</td>
             <td><div th:replace="quantity_control :: quantity_control(1, ${product.id})">Quantity</div></td>
             <td>
-                <a class="h4 mr-3" th:href="@{'/admin/products/edit/' + ${product.id}}">Add to Cart</a>
+                <a class="btn btn-primary text-white" id="buttonAdd2Cart">Add to Cart</a>
             </td>
         </tr>
     </th:block>
 
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#buttonAdd2Cart").on("click", function(e) {
+                alert('Add to cart');
+            });
+        });
+
+
+    </script>
 
     </tbody>
 </table>
