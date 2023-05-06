@@ -20,13 +20,12 @@ public class ShoppingCartRestController {
     public String addProductToCart(@PathVariable("pid") Integer productId,
                                    @PathVariable("qty") Integer quantity,
                                    @AuthenticationPrincipal Authentication authentication) {
-        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "You must login to add this product to your shopping cart.";
-        }
+//        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+//            return "You must login to add this product to your shopping cart.";
+//        }
 
         Integer addedQuantity = cartService.addProduct(Long.valueOf(productId), quantity);
-
-        return addedQuantity + " item(s) of this product were added to your shopping cantoh:";
+        return addedQuantity + " item(s) of this product were added to your shopping cart:";
 
     }
 }

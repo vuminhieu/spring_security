@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="quantity_control(qtyValue, productId)">
-    <nav>
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-Link minusButton" href="" th:pid="${productId}"><b>-</b></a>
-            </li>
-            <li class="page-item">
-                <input type="text" th:value="${qtyValue}" class="form-control text-center"
-                onkeydown="return false;" style="max-width: 55px"
-                th:id="'quantity' + ${productId}"/>
-            </li>
-            <li class="page-item">
-                <a class="page-Link pLusButton" href="" th:pid="${productId}"><b>+</b></a>
-            </li>
-        </ul>
-    </nav>
-</div>
-<script>
+<script type="text/javascript">
+    contextPdth = "[[@{/}]]";
+    var crsfHeaderName = "[[${_csrf.headerName}]]";
+    var csrfValue = "[[${_csrf.token}]]";
+    var productId = "[[${product.id}]]";
+
+    $(document).ready(function () {
+        $(".img-thumbnail").mouseover(function () {
+            $("#bigImage").attr("sre", $(this).attr("sre"));
+            $("#bigImage").attr("index", $(this).attr("index"));
+
+            $("#bigImage").on("click", function () {
+                $("#carouselModal").modal("show");
+                imageIndex = $("#bigImage").attr("index");
+                $("#carouselExampleControls").carousel(parseInt(imageIndex));
+            });
+        });
+    });
+
+
     $(document).ready(function () {
         $(".minusButton").on("click", function (evt) {
             evt.preventDefault();
@@ -39,5 +41,22 @@
     });
 
 </script>
+<div th:fragment="quantity_control(qtyValue, productId)">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-Link minusButton" href="" th:pid="${productId}"><b>-</b></a>
+            </li>
+            <li class="page-item">
+                <input type="text" th:value="${qtyValue}" class="form-control text-center"
+                       onkeydown="return false;" style="max-width: 55px"
+                       th:id="'quantity' + ${productId}"/>
+            </li>
+            <li class="page-item">
+                <a class="page-Link pLusButton" href="" th:pid="${productId}"><b>+</b></a>
+            </li>
+        </ul>
+    </nav>
+</div>
 </body>
 </html>

@@ -10,8 +10,8 @@
     <script type="application/json" src="./js/quantity_control.js"></script>
     <script type="application/json" src="js/add_to_cart.js"></script>
 
-<!--    <script th:src= "@{/js/quantity_control.js}"></script>-->
-<!--    <script th:src= "@{/js/add_to_cart.js}"></script>-->
+    <!--    <script th:src= "@{/js/quantity_control.js}"></script>-->
+    <!--    <script th:src= "@{/js/add_to_cart.js}"></script>-->
 </head>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -110,7 +110,9 @@
             <td>[[${product.name}]]</td>
             <td>[[${product.description}]]</td>
             <td>[[${product.price}]]</td>
-            <td><div th:replace="quantity_control :: quantity_control(1, ${product.id})">Quantity</div></td>
+            <td>
+                <div th:replace="quantity_control :: quantity_control(1, ${product.id})">Quantity</div>
+            </td>
             <td>
                 <a class="btn btn-primary text-white" id="buttonAdd2Cart">Add to Cart</a>
             </td>
@@ -119,13 +121,32 @@
 
     </div>
     <script>
-        $(document).ready(function() {
-            $("#buttonAdd2Cart").on("click", function(e) {
-                alert('Add to cart');
+        $(document).ready(function () {
+            $("#buttonAdd2Cart").on("click", function (e) {
+                addToCart();
             });
         });
 
+        function addToCart() {
+            quantity = $("#quantity" + productId).val();
+            url = contextPath + "?cart/add/" + productId + "/" + quantity;
 
+            $.ajax({
+                type: "POST",
+                url: url,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(crsfHeaderName, csrfValue);
+                }
+            }).done(function (response) {
+                $("#modalTitle").text("Shopping Cart");
+                $("#modalBody").text(response);
+                $("#myModal").modal();
+            }).fail(function () {
+                $("#modalTitle").text("Shopping Cart");
+                $("#modalBody").text("Error while adding product to shopping cart.");
+                $("#myModal").modal();
+            });
+        }
     </script>
 
     </tbody>
