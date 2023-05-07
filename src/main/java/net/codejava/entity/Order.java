@@ -13,6 +13,27 @@ public class Order {
     @Column(unique = true, length = 45)
     private Double totalPrice;
 
+    @Column(unique = true, length = 45)
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Column(unique = true, length = 12)
+    private Long phoneNumber;
     private Boolean status;
 
     public Long getId() {
