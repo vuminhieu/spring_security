@@ -10,6 +10,17 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(unique = true, length = 45)
+    private String name;
+
     @Column(unique = true, length = 45)
     private Double totalPrice;
 
