@@ -1,7 +1,6 @@
 package net.codejava.controllers;
 
 import net.codejava.entity.Order;
-import net.codejava.entity.Product;
 import net.codejava.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 
 @Controller
 public class OderController {
@@ -23,14 +21,15 @@ public class OderController {
         model.addAttribute("order", new Order());
         model.addAttribute("pageTitle", "Add New Order");
 
-        return "orders/form";
+        return "/orders/form";
     }
 
-    @PostMapping("orders/save")
+    @PostMapping("/orders/save")
     public String saveOrder(Order order, RedirectAttributes ra) {
         service.save(order);
         ra.addFlashAttribute("message", "The order has been saved successfully.");
 
-        return "redirect:/orders/successful";
+        return "orders/successful";
     }
+
 }

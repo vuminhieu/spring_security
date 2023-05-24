@@ -29,7 +29,7 @@ public class OrderService {
     public void delete(Long id) throws ProductNotFoundException {
         Long count = repo.countById(id);
         if (count == null || count == 0) {
-            throw new ProductNotFoundException("Cound not find any product with id" + id);
+            throw new ProductNotFoundException("Cound not find any order with id" + id);
         }
         repo.deleteById(id);
     }

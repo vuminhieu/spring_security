@@ -45,6 +45,8 @@ public class Order {
 
     @Column(unique = true, length = 12)
     private Long phoneNumber;
+
+    @Column(unique = false)
     private Boolean status;
 
     public Long getId() {
@@ -69,5 +71,17 @@ public class Order {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", address='" + address + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", status=" + status +
+                '}';
     }
 }
