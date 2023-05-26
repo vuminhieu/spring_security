@@ -15,7 +15,6 @@ public class ShoppingCartRestController {
     @Autowired
     private OrderProductService cartService;
 
-
     @PostMapping("/cart/add/{pid}/{qty}")
     public String addProductToCart(@PathVariable("pid") Integer productId,
                                    @PathVariable("qty") Integer quantity,
